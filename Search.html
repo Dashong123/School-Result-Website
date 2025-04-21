@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachinAid School: Examination Results</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="Search.css">
+    <style>
+        .entry-container {
+            border: 2px solid #4CAF50;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .entry-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .entry-container button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <div class="w3-bar w3-white">
+        <a href="Home.html" class="w3-bar-item w3-button">Home</a>
+        <a href="link1.html" class="w3-bar-item w3-button">Link 1</a>
+        <a href="link2.html" class="w3-bar-item w3-button">Link 2</a>
+        <a href="link3.html" class="w3-bar-item w3-button">Link 3</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="w3-container w3-center">
+        <h2>Enter Your Child's Name</h2>
+
+        <div class="entry-container w3-animate-bottom">
+            <form id="searchForm">
+                <input type="text" id="name" name="name" placeholder="Enter your child's name" required>
+                <button type="submit" class="w3-button">Submit</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="result-container"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-center w3-padding-16">
+        <p>Copyright &copy; 2025 TeachinAid. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Example student data (this can be expanded or loaded from a JSON file)
+        const students = [
+            { index_number: "12345", name: "John Doe", subject: "Mathematics", score: 85 },
+            { index_number: "67890", name: "Jane Smith", subject: "Science", score: 92 },
+            { index_number: "11223", name: "Emily White", subject: "English", score: 78 },
+            { index_number: "23905", name: "Sarah James", subject: "French", score: 99}
+        ];
+
+        // Function to search for the student by name
+        function searchStudentByName(name) {
+            const student = students.find(s => s.name.toLowerCase() === name.toLowerCase());
+            const resultContainer = document.getElementById('result-container');
+
+            if (student) {
+                resultContainer.innerHTML = `
+                    <div class="result">
+                        <h3>Results for ${student.name}</h3>
+                        <a href="https://drive.google.com/drive/folders/1FXiDpVds5iQ12vmgEeYv_Gtl2IU-BLYt?usp=sharing">
+                        <button>Get Results</button>
+                        </a>
+                    </div>
+                `;
+            } else {
+                resultContainer.innerHTML = `
+                    <div class="result">
+                        <p>No results found for this name.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting
+
+            const name = document.getElementById('name').value;
+            searchStudentByName(name);
+        });
+    </script>
+</body>
+</html>
